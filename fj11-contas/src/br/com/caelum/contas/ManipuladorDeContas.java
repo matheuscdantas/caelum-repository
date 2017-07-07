@@ -5,10 +5,10 @@ import br.com.caelum.javafx.api.util.Evento;
 
 public class ManipuladorDeContas {
 	
-	/*private Conta conta;
+	private Conta conta;
 	public void criaConta(Evento evento) {
 		this.conta = new Conta("Matheus", 1, "1-1", "04/07/2017");
-	}*/
+	}
 	
 	public void deposita(Evento evento){
 		double valorDigitado = evento.getDouble("valor");
