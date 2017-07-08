@@ -1,6 +1,6 @@
 package br.com.caelum.contas.main;
 
-import br.com.caelum.contas.modelo.Conta;
+import br.com.caelum.javafx.api.main.SistemaBancario;
 
 /**
  * @author Matheus
@@ -9,11 +9,7 @@ import br.com.caelum.contas.modelo.Conta;
 public class TestaConta {
 	public static void main(String[] args) {
 		
-		Conta c1 = new Conta("Matheus", 1, "1-1", "06/07/2017");
-		if (c1.deposita(50.0)) {
-			System.out.println("Depósito efetuado.");
-		} else {
-			System.out.println("Não é possível depositar valor negativo.");
-		}
+		SistemaBancario.mostraTela(false);
+		
 	}
 }
