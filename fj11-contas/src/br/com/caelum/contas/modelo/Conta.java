@@ -4,7 +4,7 @@ package br.com.caelum.contas.modelo;
  * @author oo7222
  *
  */
-public class Conta {
+public abstract class Conta {
 
 	private String titular;
 	protected double saldo;
@@ -31,8 +31,12 @@ public class Conta {
 		conta.deposita(valor);
 	}
 	
-	public String getTipo(){
-		return "Conta";
+	public abstract String getTipo();
+	
+	public String imprimeDados(){
+		String dados = "Titular: " + this.getTitular() + "\nAgencia: " + this.getAgencia()
+				+"\nNúmero:" + this.getNumero() + "\nTipo de Conta: " + this.getTipo();
+		return dados;
 	}
 	
 	public boolean deposita(double valor) {

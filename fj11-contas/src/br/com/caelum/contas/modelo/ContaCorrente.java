@@ -1,6 +1,6 @@
 package br.com.caelum.contas.modelo;
 
-public class ContaCorrente extends Conta{
+public class ContaCorrente extends Conta implements Tributavel{
 	
 	public ContaCorrente(){
 		super();
@@ -9,9 +9,7 @@ public class ContaCorrente extends Conta{
 	public ContaCorrente(String titular, int agencia, String numero) {
 		super(titular, agencia, numero);
 	}
-	
-	private double limite;
-	
+		
 	@Override
 	public boolean saca(double valor){
 		valor *= 1.1;
@@ -20,6 +18,11 @@ public class ContaCorrente extends Conta{
 	}
 	
 	public String getTipo(){
-		return super.getTipo() + " Corrente";
+		return "Conta Corrente";
+	}
+
+	@Override
+	public double getValorImposto() {
+		return this.getSaldo() * 0.01;
 	}
 }
