@@ -13,5 +13,4 @@ public class ManipuladorDeSeguroDeVida {
 		this.seguroDeVida.setTitular(evento.getString("titular"));
 		this.seguroDeVida.setValor(evento.getDouble("valor"));
 	}
-	
 }

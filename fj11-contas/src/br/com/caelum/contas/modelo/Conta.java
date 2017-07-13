@@ -11,48 +11,55 @@ public abstract class Conta {
 	private String numero;
 	private int agencia;
 
-	public Conta(){
-		
+	public Conta() {
+
 	}
-	
+
 	public Conta(String titular, int agencia, String numero) {
 		this.titular = titular;
 		this.agencia = agencia;
 		this.numero = numero;
 	}
-	
+
+	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof Conta)) return false;
+		Conta c = (Conta) obj;
+		if(this.agencia == c.getAgencia() && this.numero.equals(c.getNumero())) return true;
+		return false;
+	}
+
 	@Override
 	public String toString() {
+		titular = titular.toUpperCase();
 		return titular + "-" + numero;
 	}
 
-	public void transfere(double valor, Conta conta){
+	public void transfere(double valor, Conta conta) {
 		this.saca(valor);
 		conta.deposita(valor);
 	}
-	
+
 	public abstract String getTipo();
-	
-	public String imprimeDados(){
-		String dados = "Titular: " + this.getTitular() + "\nAgencia: " + this.getAgencia()
-				+"\nNúmero:" + this.getNumero() + "\nTipo de Conta: " + this.getTipo();
+
+	public String imprimeDados() {
+		String dados = "Titular: " + this.getTitular() + "\nAgencia: " + this.getAgencia() + "\nNúmero:"
+				+ this.getNumero() + "\nTipo de Conta: " + this.getTipo();
 		return dados;
 	}
-	
-	public boolean deposita(double valor) {
-		if (valor > 0) {
-			saldo += valor;
-			return true;
+
+	public void deposita(double valor) {
+		if (valor < 0) {
+			throw new IllegalArgumentException("Valor negativo inválido");
 		}
-		return false;
+		this.saldo += valor;
 	}
 
-	public boolean saca(double valor) {
-		if (valor <= saldo) {
-			saldo -= valor;
-			return true;
+	public void saca(double valor) {
+		if (valor < 0) {
+			throw new IllegalArgumentException("Valor negativo inválido");
 		}
-		return false;
+		this.saldo -= valor;
 	}
 
 	public String getTitular() {
@@ -81,5 +88,5 @@ public abstract class Conta {
 
 	public void setAgencia(int agencia) {
 		this.agencia = agencia;
-	}	
+	}
 }
