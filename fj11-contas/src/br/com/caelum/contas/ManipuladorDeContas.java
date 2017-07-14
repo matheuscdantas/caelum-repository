@@ -1,5 +1,8 @@
 package br.com.caelum.contas;
 
+import java.util.Collections;
+import java.util.List;
+
 import br.com.caelum.contas.modelo.Conta;
 import br.com.caelum.contas.modelo.ContaCorrente;
 import br.com.caelum.contas.modelo.ContaPoupanca;
@@ -18,6 +21,11 @@ public class ManipuladorDeContas {
 		this.conta.setAgencia(evento.getInt("agencia"));
 		this.conta.setNumero(evento.getString("numero"));
 		this.conta.setTitular(evento.getString("titular"));
+	}
+	
+	public void ordenaLista(Evento evento){
+		List<Conta> contas = evento.getLista("destino");
+		Collections.sort(contas);
 	}
 	
 	public void deposita(Evento evento){
